@@ -340,12 +340,6 @@ y1) e P2(x2,y2). Desenvolva uma função para criar uma imagem de saída, a qual
 mesma dimensão da imagem de entrada e a cor de todos os pixels é preta. Em seguida,
 copie a região definida na imagem de entrada para a imagem de saída.
 */
-void getDimensao(PGM *pgm, int *larg, int *alt)
-{
-    larg = &pgm->largura;
-    alt = &pgm->altura;
-}
-
 void copiaSelecaoRegiao(PGM *pgm_1, PGM *pgm_2, int x1, int y1, int x2, int y2)
 {
     if (!pgm_1->pixels)
@@ -358,8 +352,11 @@ void copiaSelecaoRegiao(PGM *pgm_1, PGM *pgm_2, int x1, int y1, int x2, int y2)
 
         for (int x = x1; x < x2; x++) {
 
-            unsigned char pixel = getPixel(pgm_1, x, y);
-            setPixel(pgm_2, x, y, pixel);
+            if (coordValida(pgm, x1, y1) && coordValida(pgm, x2, y2))
+            {
+                unsigned char pixel = getPixel(pgm_1, x, y);
+                setPixel(pgm_2, x, y, pixel);
+            }
 
         }
 
