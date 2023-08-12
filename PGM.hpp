@@ -352,7 +352,7 @@ void copiaSelecaoRegiao(PGM *pgm_1, PGM *pgm_2, int x1, int y1, int x2, int y2)
 
         for (int x = x1; x < x2; x++) {
 
-            if (coordValida(pgm, x1, y1) && coordValida(pgm, x2, y2))
+            if (coordValida(pgm_1, x1, y1) && coordValida(pgm_2, x2, y2))
             {
                 unsigned char pixel = getPixel(pgm_1, x, y);
                 setPixel(pgm_2, x, y, pixel);
